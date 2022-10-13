@@ -52,7 +52,7 @@ public class Parser {
         case AddAppointmentCommand.COMMAND_WORD:
             return prepareAddAppointment(statement);
         break;
-        case DeleteAppointmentCommand.COMMAND_WORD:
+        case RemoveAppointmentCommand.COMMAND_WORD:
             return prepareDeleteAppointment(statement);
         break;
         case AllocateAppointmentCommand.COMMAND_WORD:
@@ -143,22 +143,22 @@ public class Parser {
     }
 
 
-    public command prepareDeleteAppointment(String input){
-        int index = indexOfDelete(input);
+    public command prepareRemoveAppointment(String input){
+        int index = indexOfRemove(input);
         if(index == -1){
             System.out.println("input invalid");
             return new ExitCommand();
         }
-
-        return new DeleteAppointmentCommand(index);
+        return new RemoveAppointmentCommand(index);
     }
 
     public command prepareDeletePet(String input){
-        int index = indexOfDelete(input);
+        int index = indexOfRemove(input);
         if(index == -1){
             System.out.println("input invalid");
             return new ExitCommand();
         }
+
 
         return new DeletePetCommand(index);
     }
@@ -236,6 +236,7 @@ public class Parser {
         switch(type) {
         case AddPetCommand.COMMAND_WORD:
             return prepareAddPet(statement);
+
             break;
         case DeleteAppointmentCommand.COMMAND_WORD:
             return prepareDeletePet(statement);
@@ -276,6 +277,7 @@ public class Parser {
         }
     }
 
+
     public command prepareAddEmployee(String statement){
         int startOfN = input.indexOf(" n/");
 
@@ -298,7 +300,6 @@ public class Parser {
 
         return new DeleteEmployeeCommand(index);
     }
-
 
 
 }
